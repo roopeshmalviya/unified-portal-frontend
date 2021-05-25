@@ -1,0 +1,67 @@
+<div class="container-fluid col-lg-5 mt-5">
+    <div class="row">
+
+        <div class="row text-center">
+            <h2>Log In</h2>
+        </div>
+        <hr>
+
+        <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+            <!-- Email Input -->
+            <div class="form-floating mb-3">
+                <input formControlName='email' type="email" class="form-control" id="email" placeholder="Email address"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <label for="email">Email address</label>
+                <div
+          *ngIf="
+            logInForm.get('email').invalid &&
+            (logInForm.get('email').dirty || logInForm.get('email').touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="logInForm.get('email').errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="logInForm.get('email').errors.minlength">
+            Email cannot be more than 30 characters long.
+          </div>
+          <div *ngIf="logInForm.get('email').errors.minlength">
+            Email must be at least 2 characters long.
+          </div>
+        </div>
+            </div>
+            <!-- Password input -->
+            <div class="form-floating mb-3">
+                <input formControlName='password' type="password" class="form-control" id="password"
+                    placeholder="Email address" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <label for="password">Password</label>
+                <div
+          *ngIf="
+            logInForm.get('password').invalid &&
+            (logInForm.get('password').dirty ||
+              logInForm.get('password').touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="logInForm.get('password').errors.required">
+            Password is required.
+          </div>
+          <div *ngIf="logInForm.get('password').errors.minlength">
+            Password cannot be more than 30 characters long.
+          </div>
+          <div *ngIf="logInForm.get('password').errors.minlength">
+            Password must be at least 2 characters long.
+          </div>
+        </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1" type="submit">Log In</button>
+                <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button> -->
+            </div>
+
+            <div class="text-center mt-4">
+                <a routerLink='/signup'>Do not have an account? Signup</a>
+              </div>
+        </form>
+    </div>
+</div>
