@@ -39,24 +39,24 @@
             <input formControlName="lastName" type="text" id="lastName" class="form-control" placeholder="Last Name"
               class="form-control" />
             <label class="form-label" for="lastName">Last Name</label>
-            <div *ngIf="
+            <ng-container *ngIf="
                 signUpForm.get('lastName').invalid &&
                 (signUpForm.get('lastName').dirty ||
                   signUpForm.get('lastName').touched)
               " class="alert alert-danger">
-              <div *ngIf="signUpForm.get('lastName').errors.required">
+              <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.required">
                 Last Name is required.
-              </div>
-              <div *ngIf="signUpForm.get('lastName').errors.minlength">
+              </p>
+              <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.minlength">
                 Last Name cannot be more than 30 characters long.
-              </div>
-              <div *ngIf="signUpForm.get('lastName').errors.minlength">
+              </p>
+              <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.minlength">
                 Last Name must be at least 2 characters long.
-              </div>
-              <div *ngIf="signUpForm.get('lastName').errors.pattern">
+              </p>
+              <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.pattern">
                 Only characters allowed.
-              </div>
-            </div>
+              </p>
+            </ng-container>
           </div>
         </div>
       </div>
