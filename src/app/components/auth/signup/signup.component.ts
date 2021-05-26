@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -228,31 +227,16 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authentication: AuthenticationService,
     private router: Router,
-    private notify: NotifierService,
-    
+    private notify: NotifierService
   ) {}
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
-      firstName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.pattern('^[a-zA-Z ]*$'),
-        ],
-      ],
-      lastName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.pattern('^[a-zA-Z ]*$'),
-        ],
-      ],
+      firstName: ['',[Validators.required,Validators.minLength(4), Validators.maxLength(30),Validators.pattern('^[a-zA-Z ]*$')]],
+      lastName: ['',[Validators.required,Validators.minLength(4), Validators.maxLength(30),Validators.pattern('^[a-zA-Z ]*$')]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
       country: ['', [Validators.required]],
     });
   }

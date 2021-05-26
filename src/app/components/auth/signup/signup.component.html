@@ -21,8 +21,8 @@
               <p class="text-danger px-2" *ngIf="signUpForm.get('firstName').errors.required">
                 First Name is required.
               </p>
-              <p class="text-danger px-2" *ngIf="signUpForm.get('firstName').errors.minlength">
-                First Name cannot be more than 30 characters long.
+              <p class="text-danger px-2" *ngIf="signUpForm.get('firstName').errors.maxlenght">
+                First Name cannot be more than 30 characters long. 
               </p>
               <p class="text-danger px-2" *ngIf="signUpForm.get('firstName').errors.minlength">
                 First Name must be at least 2 characters long.
@@ -47,7 +47,7 @@
               <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.required">
                 Last Name is required.
               </p>
-              <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.minlength">
+              <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.maxlenght">
                 Last Name cannot be more than 30 characters long.
               </p>
               <p class="text-danger px-2" *ngIf="signUpForm.get('lastName').errors.minlength">
@@ -66,20 +66,20 @@
         <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email address"
           class="form-control" />
         <label for="email">Email address</label>
-        <div *ngIf="
+        <ng-container *ngIf="
             signUpForm.get('email').invalid &&
             (signUpForm.get('email').dirty || signUpForm.get('email').touched)
           " class="alert alert-danger">
-          <div *ngIf="signUpForm.get('email').errors.required">
+          <p class="text-danger px-2" *ngIf="signUpForm.get('email').errors.required">
             Email is required.
-          </div>
-          <div *ngIf="signUpForm.get('email').errors.minlength">
-            Email cannot be more than 30 characters long.
-          </div>
-          <div *ngIf="signUpForm.get('email').errors.minlength">
+          </p>
+          <p class="text-danger px-2" *ngIf="signUpForm.get('email').errors.email">
+            Email is not valid.
+          </p>
+          <p class="text-danger px-2" *ngIf="signUpForm.get('email').errors.minlength">
             Email must be at least 2 characters long.
-          </div>
-        </div>
+          </p>
+        </ng-container>
       </div>
 
       <!-- Password input -->
@@ -87,21 +87,21 @@
         <input formControlName="password" type="password" id="password" class="form-control" placeholder="Password"
           class="form-control" />
         <label class="form-label" for="password">Password</label>
-        <div *ngIf="
+        <ng-container *ngIf="
             signUpForm.get('password').invalid &&
             (signUpForm.get('password').dirty ||
               signUpForm.get('password').touched)
           " class="alert alert-danger">
-          <div *ngIf="signUpForm.get('password').errors.required">
+          <p class="text-danger px-2" *ngIf="signUpForm.get('password').errors.required">
             Password is required.
-          </div>
-          <div *ngIf="signUpForm.get('password').errors.minlength">
+          </p>
+          <p class="text-danger px-2" *ngIf="signUpForm.get('password').errors.maxlenght">
             Password cannot be more than 30 characters long.
-          </div>
-          <div *ngIf="signUpForm.get('password').errors.minlength">
+          </p>
+          <p class="text-danger px-2" *ngIf="signUpForm.get('password').errors.minlength">
             Password must be at least 2 characters long.
-          </div>
-        </div>
+          </p>
+        </ng-container>
       </div>
 
       <!-- Confirm Password input -->
@@ -109,38 +109,40 @@
         <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
           class="form-control" />
         <label class="form-label" for="confirmPassword">Confirm Password</label>
-        <div *ngIf="
+        <ng-container *ngIf="
             signUpForm.get('confirmPassword').invalid &&
             (signUpForm.get('confirmPassword').dirty ||
               signUpForm.get('confirmPassword').touched)
           " class="alert alert-danger">
-          <div *ngIf="signUpForm.get('confirmPassword').errors.required">
+          <p class="text-danger px-2" *ngIf="signUpForm.get('confirmPassword').errors.required">
             Confirm Password is required.
-          </div>
-          <div *ngIf="signUpForm.get('confirmPassword').errors.minlength">
+          </p>
+          <p class="text-danger px-2" *ngIf="signUpForm.get('confirmPassword').errors.maxlenght">
             Confirm Password cannot be more than 30 characters long.
-          </div>
-          <div *ngIf="signUpForm.get('confirmPassword').errors.minlength">
+          </p>
+          <p class="text-danger px-2" *ngIf="signUpForm.get('confirmPassword').errors.minlength">
             Confirm Password must be at least 2 characters long.
-          </div>
+          </p>
           <!-- <div *ngIf="signUpForm.getconfirmPassword.errors.mustMatch">
             Passwords must match
           </div> -->
-        </div>
+        </ng-container>
       </div>
 
       <!-- Country input -->
       <div class="form-floating mb-3">
         <select formControlName="country" name="country" id="country" class="form-select">
           <option value="" disabled selected>Select Country</option>
-          <option *ngFor="let option of options" [value]="option">{{option}}</option>
+          <option *ngFor="let option of options" [value]="option">
+            {{ option }}
+          </option>
         </select>
         <label class="form-label" for="country">Country</label>
         <ng-container *ngIf="
             signUpForm.get('country').invalid &&
             (signUpForm.get('country').dirty ||
-            signUpForm.get('country').touched)
-          " >
+              signUpForm.get('country').touched)
+          ">
           <p class="text-danger px-2" *ngIf="signUpForm.get('country').errors.required">
             country is required.
           </p>
