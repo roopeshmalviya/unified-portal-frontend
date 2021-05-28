@@ -6,28 +6,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './components/auth/auth.module';
 import { NotifierModule } from 'angular-notifier';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     FormsModule,
+    DashboardModule,
     ReactiveFormsModule,
     HttpClientModule,
     NotifierModule,
     RouterModule,
+    NgbModule,
   ],
   providers: [
     {
